@@ -102,7 +102,13 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      try {
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      } catch (error) {
+        console.log("Sadly an error happened my friend");
+        console.error(error);
+      }
+
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
@@ -112,59 +118,59 @@
 
     // Step 2 -----------------------------------------------------
 
-    // Function for Console Log Demo
+    // Function for Console Log
     function consoleLog() {
       console.log("Console Log Demo");
     }
 
-    // Function for Console Error Demo
+    // Function for Console Error
     function consoleError() {
       console.error("Console Log Demo");
     }
 
-    // Function for Console Count Demo
+    // Function for Console Count
     function consoleCount() {
       console.count("Count Button: ");
     }
 
-    // Function for Console Warn Demo
+    // Function for Console Warn
     function consoleWarn() {
       console.warn("Console Warn Button");
     }
 
-    // Function for Console Assert Demo
+    // Function for Console Assert
     function consoleAssert() {
       const number = 2;
       const errorMsg = 'The number does not equal 3';
       console.assert(number == 3, { number, errorMsg });
     }
 
-    // Function for Console Clear Demo
+    // Function for Console Clear
     function consoleClear() {
       console.clear();
     }
 
-    // Function for Console Dir Demo
+    // Function for Console Dir
     function consoleDir() {
       console.dir(document.head);
     }
 
-    // Function for Console Dirxml Demo
+    // Function for Console Dirxml
     function consoleDirxml() {
       console.dirxml(document.body);
     }
 
-    // Function for Console Group Start Demo
+    // Function for Console Group Start
     function consoleGroup() {
       console.group("console.group");
     }
 
-    // Function for Console Group End Demo
+    // Function for Console Group End
     function consoleGroupEnd() {
       console.groupEnd();
     }
 
-    // Function for Console Table Demo
+    // Function for Console Table
     function consoleTable() {
       var classes = [
         { name: 'Software Engineering', num: 110 },
@@ -174,17 +180,17 @@
       console.table(classes);
     }
 
-    // Function for Start Timer Demo
+    // Function for Start Timer
     function consoleTime() {
       console.time("Timer Button");
     }
 
-    // Function for End Timer Demo
+    // Function for End Timer
     function consoleTimeEnd() {
       console.timeEnd("Timer Button");
     }
 
-    // Function for Console Trace Demo
+    // Function for Console Trace
     function consoleTrace() {
       const handleBtnClick = () => { deep(); };
       const deep = () => { deeper(); };
