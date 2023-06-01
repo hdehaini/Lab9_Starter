@@ -6,6 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lab 9</title>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({
+      token: "049abd7fd162419bb620824ffb680f86"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
 
   <style>
     button {
@@ -69,21 +76,21 @@
     </form>
 
     <section id="error-btns">
-      <button>Console Log</button>
-      <button>Console Error</button>
-      <button>Console Count</button>
-      <button>Console Warn</button>
-      <button>Console Assert</button>
-      <button>Console Clear</button>
-      <button>Console Dir</button>
-      <button>Console dirxml</button>
-      <button>Console Group Start</button>
-      <button>Console Group End</button>
-      <button>Console Table</button>
-      <button>Start Timer</button>
-      <button>End Timer</button>
-      <button>Console Trace</button>
-      <button>Trigger a Global Error</button>
+      <button onclick="consoleLog()">Console Log</button>
+      <button onclick="consoleError()">Console Error</button>
+      <button onclick="consoleCount()">Console Count</button>
+      <button onclick="consoleWarn()">Console Warn</button>
+      <button onclick="consoleAssert()">Console Assert</button>
+      <button onclick="consoleClear()">Console Clear</button>
+      <button onclick="consoleDir()">Console Dir</button>
+      <button onclick="consoleDirxml()">Console dirxml</button>
+      <button onclick="consoleGroup()">Console Group Start</button>
+      <button onclick="consoleGroupEnd()">Console Group End</button>
+      <button onclick="consoleTable()">Console Table</button>
+      <button onclick="consoleTime()">Start Timer</button>
+      <button onclick="consoleTimeEnd()">End Timer</button>
+      <button onclick="consoleTrace()">Console Trace</button>
+      <button onclick="triggerGlobalError()">Trigger a Global Error</button>
     </section>
   </main>
 
@@ -102,6 +109,170 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+    // Step 2 -----------------------------------------------------
+
+    // Function for Console Log Demo
+    function consoleLog() {
+      console.log("Console Log Demo");
+    }
+
+    // Function for Console Error Demo
+    function consoleError() {
+      console.error("Console Log Demo");
+    }
+
+    // Function for Console Count Demo
+    function consoleCount() {
+      console.count("Count Button: ");
+    }
+
+    // Function for Console Warn Demo
+    function consoleWarn() {
+      console.warn("Console Warn Button");
+    }
+
+    // Function for Console Assert Demo
+    function consoleAssert() {
+      const number = 2;
+      const errorMsg = 'The number does not equal 3';
+      console.assert(number == 3, { number, errorMsg });
+    }
+
+    // Function for Console Clear Demo
+    function consoleClear() {
+      console.clear();
+    }
+
+    // Function for Console Dir Demo
+    function consoleDir() {
+      console.dir(document.head);
+    }
+
+    // Function for Console Dirxml Demo
+    function consoleDirxml() {
+      console.dirxml(document.body);
+    }
+
+    // Function for Console Group Start Demo
+    function consoleGroup() {
+      console.group("console.group");
+    }
+
+    // Function for Console Group End Demo
+    function consoleGroupEnd() {
+      console.groupEnd();
+    }
+
+    // Function for Console Table Demo
+    function consoleTable() {
+      var classes = [
+        { name: 'Software Engineering', num: 110 },
+        { name: 'Programming Languages: Principles and Paradigms', num: 130 },
+        { name: 'Advanced Software Engineering', num: 112 }
+      ];
+      console.table(classes);
+    }
+
+    // Function for Start Timer Demo
+    function consoleTime() {
+      console.time("Timer Button");
+    }
+
+    // Function for End Timer Demo
+    function consoleTimeEnd() {
+      console.timeEnd("Timer Button");
+    }
+
+    // Function for Console Trace Demo
+    function consoleTrace() {
+      const handleBtnClick = () => { deep(); };
+      const deep = () => { deeper(); };
+      const deeper = () => { deepest(); };
+      const deepest = () => { console.trace(); };
+      handleBtnClick();
+    }
+
+    // Function to trigger a global error
+    function triggerGlobalError() {
+      // This code intentionally throws an error
+      nonexistentFunction();
+    }
+
+    // Step 3 -----------------------------------------------------
+
+    // try/catch/finally with throw block to catch the error
+    // Since test is defined with let, it is not accessible outside the block
+    try {
+      if (true) {
+        let test = 1
+      }
+
+      if (!test) {
+        throw new Error("test is not defined in current block");
+      }
+
+      if (test == 1) {
+        console.log("test is 1");
+      } else {
+        console.log("test is not 1");
+      }
+    } catch (error) {
+      console.log("Catch error: " + error.message);
+    } finally {
+      console.log("Finally block output");
+    }
+
+
+    // Step 4 -----------------------------------------------------
+    class Error {
+      constructor(message) {
+        this.message = message;
+        this.name = "Error";
+      }
+    }
+
+
+    class CheckError extends Error {
+      constructor(message, name) {
+        super(message);
+        this.name = name;
+      }
+    }
+
+    function test(x) {
+      if (!x) {
+        throw new CheckError("Need Input parameter", "x does not exist");
+      } else if (x <= 10) {
+        throw new CheckError("Input parameter is 10 or less", "x is less than 10");
+      } else {
+        throw new CheckError("Input parameter is greater than 10", "x is greater than 10");
+      }
+    }
+
+
+    try {
+      const randomNumber = Math.random();
+      if (randomNumber < 0.33) {
+        test();
+      } else if (randomNumber < 0.66) {
+        test(3);
+      } else {
+        test(333);
+      }
+    } catch (err) {
+      console.log(err.message);
+      console.log(err.name);
+    }
+
+    // Step 5 -----------------------------------------------------
+    TrackJS.track('Testing TrackJS!');
+
+
+    TrackJS.track('Test 1');
+    TrackJS.track('Test 2');
+    TrackJS.track('Test 3');
+
   </script>
 </body>
 
